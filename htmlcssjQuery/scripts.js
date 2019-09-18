@@ -3,11 +3,24 @@
 
 var createbtn = $("#create")
 
-function isChecked() {
-	return $("#item1").prop('checked')
+function isChecked(id) {
+	return $(id).prop('checked') 
 }
+$('#create').click(function(){
+	console.log(isChecked())		
+    var li= document.createElement("li");
+	var text = ""
+	if(isChecked("#item1") && isChecked("#item2") && isChecked("#item3")) {
+		$("#list").append(li)
 
-isChecked()
+	}
+
+
+
+})
+
+
+
 
 
 // var list = document.getElementById("list");

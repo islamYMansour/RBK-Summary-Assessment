@@ -211,7 +211,7 @@ function library (){
   result.currentRead =[]
   result.readBooks= []
   result.addBook = addBook
-  result.finishCurent = finishCurrent
+  result.finishCurrent = finishCurrent
 
 
 
@@ -221,20 +221,18 @@ function library (){
 
 function addBook(bookName){
   this.toRead.push(bookName)
-  this.unread = this.unread + 1
-  
+  this.unRead = this.unRead + 1
 }
 function finishCurrent() {
   if(this.currentRead.length > 0) {
-      this.reaBooks.push(this.currentRead[0])
+      this.readBooks.push(this.currentRead[0])
       this.read = this.read +1 
   }
-
   if(this.toRead.length > 0) {
       this.currentRead.unshift(this.toRead[0])
   }
-  if(this.unread - 1 >0){
-     this.unread = this.unread -1 
+  if(this.unRead - 1 >0){
+     this.unRead = this.unRead -1 
  }
 
 }
