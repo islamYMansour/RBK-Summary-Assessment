@@ -60,6 +60,9 @@ function reduce(array, f, acc) {
 
 function wordLengths(str) {
     // TODO: your code here 
+    return map (str.split(' '), function (word, index) {
+      return word.length
+    })
 }
 
 //=============================================================================
@@ -73,6 +76,13 @@ function wordLengths(str) {
 
 function countOccurrences(string, character) {
     // your code is here
+    return reduce(string.split(''), function(count, letter) {
+      
+      if(character === letter){
+        count = count +1
+      }
+      return count
+    },0)
 }
 
 //=============================================================================
@@ -85,7 +95,11 @@ function countOccurrences(string, character) {
 
 function wordsLongerThanThree(str) {
     // TODO: your code here 
+    return filter(str.split(' '), function (word, index) {
+      return word.length > 3
+    })
 }
+
 
 //=============================================================================
 /*                                  Q4                                        */
@@ -100,6 +114,9 @@ function wordsLongerThanThree(str) {
 
 function repeatString(str, count) { 
  // TODO: your code here 
+ if(count === 0)
+  return '';
+return str + repeatString(str , count -1)
 } 
  
 
@@ -128,7 +145,37 @@ function repeatString(str, count) {
 // pizza.eatSlice();
 // pizza.eatSlice();
 
-// Write your code here .....
+// Write your code here ....
+function makePizza (crust, size , noSlice){
+  var result = {}
+  var ingredients = ''
+  result.crust = crust
+  result.size = size
+  result.noSlice = noSlice
+  result.addIngredients = function(addition){
+    ingredients += addition+" ,"
+    return ingredients
+  }
+
+  result.displayIngredaints = function(){
+    return "The ingredients are: "+ingredients
+  }
+  result.bakePizza = function(){
+    window.setTimeout(window.alert, 2*1000, 'Your '+result.crust+' '+result.size +' '+result.noSlice+' slice pizza is done');
+  }
+
+  result.eatSlice= function() {
+    if(result.noSlice > 1) {
+      result.noSlice = result.noSlice-1
+      return result.noSlice
+    }
+  
+  }
+
+  return result 
+
+
+}
 
 //=============================================================================
 /*                                  Q6                                      */
@@ -156,6 +203,43 @@ d- Decrement the number of "unread" books
 
 // Write your code here .....
 
+function library (){
+  var result = {}
+  result.read = 0
+  result.unRead= 0
+  result.toRead = []
+  result.currentRead =[]
+  result.readBooks= []
+  result.addBook = addBook
+  result.finishCurent = finishCurrent
+
+
+
+  return result 
+}
+
+
+function addBook(bookName){
+  this.toRead.push(bookName)
+  this.unread = this.unread + 1
+  
+}
+function finishCurrent() {
+  if(this.currentRead.length > 0) {
+      this.reaBooks.push(this.currentRead[0])
+      this.read = this.read +1 
+  }
+
+  if(this.toRead.length > 0) {
+      this.currentRead.unshift(this.toRead[0])
+  }
+  if(this.unread - 1 >0){
+     this.unread = this.unread -1 
+ }
+
+}
+ // yes Iam 
+
 //=============================================================================
 /*                                  Q7                                       */
 //=============================================================================
@@ -176,6 +260,39 @@ d- Decrement the number of "unread" books
 
 // Write your code here .....
 
+
+function makeSafe(initalStorge) {
+    var storage = 0
+    var str= ''
+
+    function safe(data , size) {
+      if(storage < initalStorge) {
+        if(size === 'small' && initalStorge - storage >= 1){
+          storage = storage + 1
+          str += data+ " "
+
+        } else if( size === 'big' && initalStorge - storage >= 3){
+          storage = storage + 3
+          str += data+ " "
+
+        } else if(size === 'medium' && initalStorge - storage >= 2) {
+          storage =storage + 3
+          str += data+ " "
+
+        } else {
+          return "Can't fit"
+        }
+        if(storage === initalStorge ) {
+          return str;
+        }
+      } else {
+        return "Can't fit"
+      }
+
+    }
+    return safe
+
+}
 //=============================================================================
 /*                                  Q8                                       */
 //=============================================================================
@@ -216,13 +333,25 @@ d- Decrement the number of "unread" books
 //================================================================================
 // Theoretical questions.
 // 1- In your own words,Why do we use Closures ?
+ // closures is close over the variable of the parent function and avoid to use global variable to make more secure and 
+ // and can not be affected from the global scope , we put the varible on the scope of the function
+ //-More secure.
+ // can not affect global variable
+ // create more than one instance without conflicting 
 
 // 2- In OOP, what does "this" refer to ?
+//this is the parent dunction that we called the function there , if we put this inside another scope it takes the 
+// return value of its called scope function or we call the parent 
 
 // 3- What is jQuery?
+// its libray improved on js make the code lesser than js and easy to use 
+// it abbreviate the functions and 
 
 // 4- what is the diffrence between Closure's methods and The OOP's methods?
-
+// cloure methods its inside the scope of the parent function and we didnt have to use key word of this because we are
+// in the scope of the function, and we cant reuse these functions outside the parent scope.
+// oop methods can we write anywhere outside the scope of the function and invoke it 
+// inside the scope if we need any value we can get from this keyword but we should return first.
 
 
 
