@@ -8,13 +8,15 @@ function addToList(item,color) {
 	var li= document.createElement("li");
 	var text = document.createTextNode(item)
 	li.appendChild(text)
+	li.classList.add(color)
 	 // li.createText(item)
 	 list.appendChild(li)
+
 	// body...
 }
 
 function checkColor(){
-	var myColor =  color.value 
+	var myColor =  color.value
 	if(myColor === "red" || myColor === "yellow" || myColor === "blue") {
 		addToList(item.value,myColor)
 }
@@ -22,7 +24,6 @@ function checkColor(){
 
 }
 
-// btn.onclick() = function(){
-// 	console.log("dkfshfks")
-
-// }
+btn.onclick = function(){
+	checkColor()
+}
